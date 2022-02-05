@@ -1,6 +1,7 @@
 ![Coverage-100](https://img.shields.io/badge/Coverage-100-brightgreen)
 ![Licence-CC0](https://img.shields.io/badge/License-CC--0-green)
-![Size-null](https://img.shields.io/badge/Size-13.4MB-blue)
+![CodeSize-13.5MB](https://img.shields.io/badge/Code--Size-2KB-blue)
+![Size-13.5MB](https://img.shields.io/badge/Size-13.4MB-blue)
 
 # TextSpammer
 **Version:**
