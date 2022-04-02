@@ -9,6 +9,6 @@ Spams text in selected text box
 ## Screenshots
 ![img1](images/img1.png)
 <br><br>
-**Note:** Please do not put letters in the second field: "How many times to spam", since it crashes the app.
+Planning to remake it with tkniter in the future
 <br>
 \- Made with Python
