@@ -3,33 +3,27 @@
 ##########################################
 
 # Imports
-from colorama import Fore, Style
+from colorama import Fore
 import time
 from os import system
+import pip
 
 system('cls')
 # Configuring colorama
 F = Fore
-SR = Style.RESET_ALL
+R = Fore.RESET
 
-# Trying to import pyauto gui library. If an ImportError
-# occured, it will install the library via pip.
+# Trying to import pyautogui library
 try:
     import pyautogui
-except ImportError:  # Installs library if an error occures.
+except ImportError:
     print(f"{F.LIGHTRED_EX}[!] Error while importing pyautogui library.")
-    print(f"{F.GREEN}[+] Installing library via pip...{SR}")
-    system('pip install pyautogui')
-
-    try:
-        import pyautogui # Tries again after installation
-    except ImportError:
-        print(f"{F.LIGHTRED_EX}[!] Error while importing pyautogui library.")
-        print(f"{F.RED}[+] Updating library via pip...{SR}")
-        system('pip install --upgrade pyautogui')
+    print(f"{F.GREEN}[+] Installing library via pip...{R}")
+    pip.main(['install', 'pyautogui'])
+    import pyautogui
 
 # Initialization
-version = '22.04.02'
+__version__ = '22.04.02'
 gui = pyautogui
 done = 0
 errors = 0
@@ -40,37 +34,37 @@ def wait(s):
 
 ##################################################
 
-print(f"{F.LIGHTMAGENTA_EX}Text Spammer - Version " + version)
+print(f"{F.LIGHTMAGENTA_EX}Text Spammer - Version " + __version__)
 
 while True:
     print("")
 
     # Asks what phrase to spam and for how many times
-    text = input(f"{F.YELLOW}[?] Phrase to spam: {SR}")
-    cycles = input(f"{F.YELLOW}[?] How many times: {SR}")
-    cycles = int(cycles)
+    text = input(f"{F.YELLOW}[/] Text to spam: {R}")
+    repeats = input(f"{F.YELLOW}[/] Repeats: {R}")
+    repeats = int(repeats)
 
     # Delay before running so the user can click on a textbox
-    print(f"{F.CYAN}[i] You are given 10 seconds to click on a text field.{SR}")
+    print(f"{F.CYAN}[i] You are given 10 seconds to click on a text field.{R}")
     wait(5)
-    print(f"{F.CYAN}[i] 5 seconds left...{SR}")
+    print(f"{F.CYAN}[i] 5 seconds left...{R}")
     wait(5)
 
-    # While given cycles are more than how many are done, continue.
-    while cycles > done:
+    # While given repeats are more than how many are done, continue.
+    while repeats > done:
         try:
             gui.typewrite(text)
             gui.press("enter")
-            print(f"{F.GREEN}[*] Success!")
+            print(f"{F.GREEN}[#] {done}/{repeats}")
             done = done + 1
         except Exception:
-            print(f"{F.RED}[!] Error occured. Trying again...{SR}")
+            print(f"{F.RED}[!] Error occured. Trying again...{R}")
             done = done - 1
             errors = errors + 1
 
-            # If errors are more than cycles given * 2, stop running.
-            if errors > cycles * 2:
-                done = cycles # Sets done = cycles in order to stop the while loop
-                print(f"{F.LIGHTRED_EX}[x] Critical error: too many tries. Script automatically stopped.")
+            # If errors are more than repeats given * 2, stop running.
+            if errors > repeats * 2:
+                print(f"{F.LIGHTRED_EX}[x] Too many tries. Script automatically stopped.")
+                done = repeats # stops the while loop
 
     print(f"{F.CYAN}[i] Task completed.")
