@@ -23,7 +23,7 @@ except ImportError:
     import pyautogui
 
 # Initialization
-__version__ = '22.04.02'
+__version__ = '22.08.30'
 gui = pyautogui
 done = 0
 errors = 0
